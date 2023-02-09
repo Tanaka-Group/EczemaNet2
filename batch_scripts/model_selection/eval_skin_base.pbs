@@ -1,0 +1,6 @@
+#PBS -l walltime=23:00:00
+#PBS -l select=1:ncpus=32:mem=62gb
+module load anaconda3/personal
+source activate SEG_DL
+cd $PBS_O_WORKDIR
+python ../../src/eval.py --seg_type skin --model_name /RMDataset_Base/SKIN_seg_base.h5 --SUFFIX focalDice_bestOnly

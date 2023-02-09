@@ -1,0 +1,6 @@
+#PBS -l walltime=12:00:00
+#PBS -l select=1:ncpus=32:mem=62gb
+module load anaconda3/personal
+source activate SEG_DL
+cd $PBS_O_WORKDIR
+python ../../src/eval_of_robustness.py --seg_type skin --perturb_type brightness --model_prefix ncb2_ce_bestOnly --model_dir /epoch34Save/skin_new_cb2_ce/new_cb2_skin_ce.h5

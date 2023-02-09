@@ -1,0 +1,39 @@
+# Trained models #
+######################
+*.h5
+
+# Datasets #
+######################
+
+# Images #
+######################
+
+*.jpg
+*.JPG
+*.eps
+*.EPS
+*.zip
+*.png
+*.PNG
+
+# Batch job logs #
+######################
+*.pbs.*
+*.pbs-*
+*events.out*
+# Compiled files #
+######################
+core.*
+*.pyc
+
+# OS generated files #
+######################
+.DS_Store
+
+# Scripts #
+######################
+#push.sh
+
+# Abandoned files #
+######################
+src/dataset_creation.py
