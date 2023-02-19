@@ -17,9 +17,55 @@ increased by approximately 25% and 40%, respectively, compared to our previous e
 detection model. The performance of the downstream severity prediction remained
 unchanged.
 
+## Setup
+
+EczemaNet2 are build to work together with Keras and TensorFlow Keras frameworks, the major requirements are listed below:
+* Python 3.7
+* h5py < 3.0.0
+* tensorflow-gpu 1.15
+* keras 2.3.0
+
+We recommend to setup EczemaNet2 with [conda](https://anaconda.org/anaconda/conda) as it provides better dependency management and isolation:
+```
+# Create the environment with conda from the environment.yml file
+conda env create -f environment.yml
+
+# Activate the new environment
+source activate YOUR_NEW_ENV
+```
+
+Alternatively, the dependencies can be manually installed from `environment.yml` with pip.
+
+## Data
+
+For privacy concerns, the Softened Water Eczema Trial (SWET) dataset that we used in EczemaNet2 is not shareable. You are welcome to train the model with your data source. However, if you do need to access SWET, please contact [Dr Reiko Tanaka](mailto:r.tanaka@imperial.ac.uk) for more information.
+
+## Training
+
+To train EczemaNet2, execute `src/train_batch.py` by giving the following parameters as inputs:
+* The type of segmentation (either `SKIN` or `AD` (stands for Atopic Dermatitis)).
+* The directory of the training set.
+* The preferred prefix name to identify your model.
+
+Usage:
+```
+python /PROJ_DIR/src/train_batch.py --seg_type SKIN --train_dir /PROJ_DIR/data/training_set --prefix base
+```
+
+## Evaluation
+
+* `src/eval.py`: evaluates the cropping quality of skin segmentation in identifying skin regions, and AD segmentation in identifying AD regions.
+* `src/eval_of_ad_identification.py`: evaluates the cropping quality of both skin and AD segmentation in identifying AD regions.
+* `src/eval_of_robustness.py`: evaluates the robustness for skin and AD segmentation.
+
+Usage:
+```
+python /PROJ_DIR/src/eval.py --seg_type AD --suffix base --model_dir /PATH_TO_YOUR_MODEL
+```
+
 ## Publication
 
-If you find EczemaNet2 useful to your research, please cite our [JID'22 paper](https://www.medrxiv.org/content/10.1101/2022.11.05.22281951v1.full.pdf):
+As you use EczemaNet2 for your exciting discoveries, please cite our [JID'22 paper](https://www.medrxiv.org/content/10.1101/2022.11.05.22281951v1.full.pdf):
 ```
 @article {EczemaNet2,
 	author = {Attar, Rahman and Hurault, Guillem and Wang, Zihao and Mokhtari, Ricardo and Pan, Kevin and Olabi, Bayanne and Earp, Eleanor and Steele, Lloyd and Williams, Hywel C. and Tanaka, Reiko J.},
@@ -28,13 +74,13 @@ If you find EczemaNet2 useful to your research, please cite our [JID'22 paper](h
 	journal = {JID Innovations}
 }
 ```
-
-The original EczemaNet research can be found [here](https://github.com/Tanaka-Group/EczemaNet).
+You may also find the original EczemaNet research useful, which can be found [here](https://github.com/Tanaka-Group/EczemaNet).
 
 ## License
+
 This open source version of EczemaNet2 is licensed under the GPLv3 license, which can be found in the [LICENSE](/LICENSE) file.
 
-A closed source version of EczemaNet is also available without the restrictions of the GPLv3 license with a software usage agreement from Imperial College London. For more information, please contact Diana Yin <d.yin@imperial.ac.uk>.
+A closed source version of EczemaNet is also available without the restrictions of the GPLv3 license with a software usage agreement from Imperial College London. For more information, please contact [Diana Yin](mailto:d.yin@imperial.ac.uk).
 
 ```
 EczemaNet2: Reliable detection of eczema areas for fully automated
